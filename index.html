@@ -32,7 +32,7 @@
 
         //Global Variables
 
-        let bandID = "";
+        let bandID;
         let newBand0;
         let newBand1;
         let newBand2;
@@ -101,7 +101,6 @@
 
         function getSimilarArtists() {
 
-            initArtist = document.getElementById("artist-input").value;
             
             $.ajax({
                         url: "https://api.spotify.com/v1/artists/" + bandID + "/related-artists",
