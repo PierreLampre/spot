@@ -31,39 +31,61 @@
     <script>
 
 
-        
+
         var clientID = "2ea8916fc375497c977cf897e6533579";
         var pageURL = "https://pierrelampre.github.io/spot/";
 
-        function auth() {
-            $.ajax(
-                {
-                    method: "GET",
-                    url: "https://accounts.spotify.com/authorize",
 
-                    data: {
-                        
-                        "client_id": clientID,
-                        "response_type": "token",
-                        "redirect_uri": "https://pierrelampre.github.io/spot/"
-                        
-                    },
 
-                    success: function (result) {
-                        console.log(result);
-                    },
+        // Get the hash of the url
+        const hash = window.location.hash
+            .substring(1)
+            .split('&')
+            .reduce(function (initial, item) {
+                if (item) {
+                    var parts = item.split('=');
+                    initial[parts[0]] = decodeURIComponent(parts[1]);
                 }
-            );
-        }
+                return initial;
+            }, {});
+        window.location.hash = '';
 
-        $("#search").on("click", function (event) {
-            event.preventDefault();
+        // Set token
+        let _token = hash.access_token;
 
-            auth();
+        const authEndpoint = 'https://accounts.spotify.com/authorize';
 
-            let artist = $("#artist-input").val().trim();
+        // Replace with your app's client ID, redirect URI and desired scopes
+        const clientId = '2ea8916fc375497c977cf897e6533579';
+        const redirectUri = 'https://pierrelampre.github.io/spot/';
+        const scopes = [
+            'playlist-modify-private',
+            'playlist-modify-public'
+        ];
 
-        });
+        // If there is no token, redirect to Spotify authorization
+        if (!_token) {
+            window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
+
+
+            $("#search").on("click", function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: "https://api.spotify.com/v1/me/top/artists",
+                    type: "GET",
+                    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
+                    success: function (data) {
+                        // Do something with the returned data
+                            console.log(data);
+              
+                    }
+                });
+
+
+                let artist = $("#artist-input").val().trim();
+
+            });
 
         //     $.ajax({
         //         url: 'https://api.spotify.com/v1/browse/new-releases',
