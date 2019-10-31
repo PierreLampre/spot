@@ -60,7 +60,7 @@
         // If there is no token, redirect to Spotify authorization
         if (!_token) {
             window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
-
+        }
 
             $("#search").on("click", function (event) {
                 event.preventDefault();
@@ -76,25 +76,8 @@
                     }
                 });
 
-
-                let artist = $("#artist-input").val().trim();
-
-            });
-
-        //     $.ajax({
-        //         url: 'https://api.spotify.com/v1/browse/new-releases',
-        //         type: 'GET',
-        //         headers: {
-        //             'Authorization': 'Bearer ' + accessToken
-        //         },
-        //         success: function (data) {
-        //             console.log(data);
-        //         }
-        //     });
-        // })
+            })
     </script>
 </body>
-
-</html>
 
 </html>
