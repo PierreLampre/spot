@@ -31,7 +31,8 @@
     <script>
 
         //Global Variables
-        
+
+        let initArtist;
         let bandID;
         let newBand0;
         let newBand1;
@@ -75,15 +76,16 @@
             window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
         }
 
-        //functionality for similar artist search
+        //_end stackoverflow auth fix_
 
-        $("#search").on("click", function (event) {
-            event.preventDefault();
+        // necessary functions
 
-            let artist = $("#search").text();
+        function getInitArtist() {
+
+            initArtist = $("#search").text().split(' ').join('+');
 
             $.ajax({
-                url: "https://api.spotify.com/v1/search?query=radiohead&offset=0&limit=10&type=artist",
+                url: "https://api.spotify.com/v1/search?query=" + initArtist + "&offset=0&limit=10&type=artist",
                 type: "GET",
                 beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
                 success: function (data) {
@@ -91,8 +93,13 @@
                     console.log(data);
 
                     bandID = data.artists.items[0].id;
+                }
+            });
+        }
 
-                    $.ajax({
+        function getSimilarArtists() {
+            
+            $.ajax({
                         url: "https://api.spotify.com/v1/artists/" + bandID + "/related-artists",
                         type: "GET",
                         beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
@@ -114,10 +121,15 @@
 
                         }
                     });
+        }
 
+        //functionality for similar artist search
 
-                }
-            });
+        $("#search").on("click", function (event) {
+            event.preventDefault();
+
+            getInitArtist();
+            getSimilarArtists();
 
         })
     </script>
