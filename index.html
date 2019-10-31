@@ -80,7 +80,7 @@
 
         // necessary functions
 
-        function getInitArtist() {
+        function getSimilarArtists() {
 
             console.log(initArtist);
 
@@ -92,17 +92,11 @@
                 beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
                 success: function (data) {
 
-                    console.log(data1);
+                    console.log(data);
 
-                    bandID = data1.artists.items[0].id.toString();
-                }
-            });
-        }
+                    bandID = data.artists.items[0].id.toString();
 
-        function getSimilarArtists() {
-
-            
-            $.ajax({
+                    $.ajax({
                         url: "https://api.spotify.com/v1/artists/" + bandID + "/related-artists",
                         type: "GET",
                         beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
@@ -124,7 +118,10 @@
 
                         }
                     });
+                }
+            });
         }
+
 
         //functionality for similar artist search
 
@@ -132,7 +129,6 @@
             event.preventDefault();
 
             getInitArtist();
-            getSimilarArtists();
 
         })
     </script>
