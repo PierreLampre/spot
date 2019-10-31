@@ -33,6 +33,7 @@
 
         
         var clientID = "2ea8916fc375497c977cf897e6533579";
+        var pageURL = "https://pierrelampre.github.io/spot/";
 
         function auth() {
             $.ajax(
@@ -45,7 +46,7 @@
                         
                         "client_id": clientID,
                         "response_type": "token",
-                        "redirect_uri": ""
+                        "redirect_uri": pageURL
                         
                     },
                     success: function (result) {
