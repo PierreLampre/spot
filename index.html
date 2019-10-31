@@ -92,9 +92,9 @@
                 beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
                 success: function (data) {
 
-                    console.log(data);
+                    console.log(data1);
 
-                    bandID = data.artists.items[0].id;
+                    bandID = data1.artists.items[0].id.toString();
                 }
             });
         }
