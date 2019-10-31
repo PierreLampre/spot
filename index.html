@@ -40,6 +40,10 @@
         let newBand4;
         let initArtist = document.getElementById("artist-input").value;
 
+        //Arrays
+
+        let similars = [];
+
 
 
         //authorization code from similar stackoverflow issue answered by spotify employee.
@@ -116,6 +120,11 @@
                             console.log(newBand3.name);
                             console.log(newBand4.name);
 
+                            similars.push(newBand0);
+                            similars.push(newBand1);
+                            similars.push(newBand2);
+                            similars.push(newBand3);
+                            similars.push(newBand4);
                         }
                     });
                 }
