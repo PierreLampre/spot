@@ -41,17 +41,14 @@
                     method: "GET",
                     url: "https://accounts.spotify.com/authorize",
 
-                    headers: {
-                        "Access-Control-Allow-Origin" : "https://pierrelampre.github.io/spot/"
-                    },
-
                     data: {
                         
                         "client_id": clientID,
                         "response_type": "token",
-                        "redirect_uri": pageURL
+                        "redirect_uri": "https://pierrelampre.github.io/spot/"
                         
                     },
+
                     success: function (result) {
                         console.log(result);
                     },
