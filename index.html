@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <form id="artist-form">
+        <label for="artist-input">Search:</label>
+        <input type="text" id="artist-input"><br>
+
+        <input id="search" type="submit" value="Search">
+    </form>
+
+    <div id="sim-art">
+
+    </div>
+
+    <script>
+
+
+        
+        var clientID = "2ea8916fc375497c977cf897e6533579";
+
+        function auth() {
+            $.ajax(
+                {
+                    method: "GET",
+                    url: "https://accounts.spotify.com/authorize",
+
+
+                    data: {
+                        
+                        "client_id": clientID,
+                        "response_type": "token",
+                        "redirect_uri": ""
+                        
+                    },
+                    success: function (result) {
+                        console.log(result);
+                    },
+                }
+            );
+        }
+
+        $("#search").on("click", function (event) {
+            event.preventDefault();
+
+            auth();
+
+            let artist = $("#artist-input").val().trim();
+
+        });
+
+        //     $.ajax({
+        //         url: 'https://api.spotify.com/v1/browse/new-releases',
+        //         type: 'GET',
+        //         headers: {
+        //             'Authorization': 'Bearer ' + accessToken
+        //         },
+        //         success: function (data) {
+        //             console.log(data);
+        //         }
+        //     });
+        // })
+    </script>
+</body>
+
+</html>
+
+</html>
