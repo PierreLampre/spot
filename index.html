@@ -67,7 +67,7 @@
             $("#search").on("click", function (event) {
                 event.preventDefault();
 
-                let artist = ("#search").text();
+                let artist = $("#search").text();
 
                 $.ajax({
                     url: "https://api.spotify.com/v1/search?query=radiohead&offset=0&limit=10&type=artist",
