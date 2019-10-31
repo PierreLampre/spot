@@ -30,7 +30,7 @@
 
     <script>
 
-    //authorization code from spotify
+    //authorization code from similar stackoverflow issue answered by spotify employee.
 
         // Get the hash of the url
         const hash = window.location.hash
@@ -64,6 +64,8 @@
             window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token`;
         }
 
+        //functionality for similar artist search
+
             $("#search").on("click", function (event) {
                 event.preventDefault();
 
@@ -76,6 +78,8 @@
                     success: function (data) {
                         // Do something with the returned data
                             console.log(data);
+
+                            console.log(artists.artists);
               
                     }
                 });
