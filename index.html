@@ -30,6 +30,7 @@
 
     <script>
 
+    //authorization code from spotify
 
         // Get the hash of the url
         const hash = window.location.hash
@@ -66,8 +67,10 @@
             $("#search").on("click", function (event) {
                 event.preventDefault();
 
+                let artist = ("#search").text();
+
                 $.ajax({
-                    url: "https://api.spotify.com/v1/me/top/artists",
+                    url: "https://api.spotify.com/v1/search?query=radiohead&offset=0&limit=10&type=artist",
                     type: "GET",
                     beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
                     success: function (data) {
