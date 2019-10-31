@@ -30,6 +30,17 @@
 
     <script>
 
+        //Global Variables
+        
+        let bandID;
+        let newBand0;
+        let newBand1;
+        let newBand2;
+        let newBand3;
+        let newBand4;
+
+
+
         //authorization code from similar stackoverflow issue answered by spotify employee.
 
         // Get the hash of the url
@@ -79,7 +90,7 @@
 
                     console.log(data);
 
-                    let bandID = data.artists.items[0].id;
+                    bandID = data.artists.items[0].id;
 
                     $.ajax({
                         url: "https://api.spotify.com/v1/artists/" + bandID + "/related-artists",
@@ -89,11 +100,11 @@
 
                             console.log(data);
 
-                            let newBand0 = data.artists[0];
-                            let newBand1 = data.artists[1];
-                            let newBand2 = data.artists[2];
-                            let newBand3 = data.artists[3];
-                            let newBand4 = data.artists[4];
+                            newBand0 = data.artists[0];
+                            newBand1 = data.artists[1];
+                            newBand2 = data.artists[2];
+                            newBand3 = data.artists[3];
+                            newBand4 = data.artists[4];
 
                             console.log(newBand0.name);
                             console.log(newBand1.name);
