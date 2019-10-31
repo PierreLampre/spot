@@ -30,7 +30,7 @@
 
     <script>
 
-    //authorization code from similar stackoverflow issue answered by spotify employee.
+        //authorization code from similar stackoverflow issue answered by spotify employee.
 
         // Get the hash of the url
         const hash = window.location.hash
@@ -66,25 +66,37 @@
 
         //functionality for similar artist search
 
-            $("#search").on("click", function (event) {
-                event.preventDefault();
+        $("#search").on("click", function (event) {
+            event.preventDefault();
 
-                let artist = $("#search").text();
+            let artist = $("#search").text();
 
-                $.ajax({
-                    url: "https://api.spotify.com/v1/search?query=radiohead&offset=0&limit=10&type=artist",
-                    type: "GET",
-                    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
-                    success: function (data) {
-                        // Do something with the returned data
-                            console.log(data);
+            $.ajax({
+                url: "https://api.spotify.com/v1/search?query=radiohead&offset=0&limit=10&type=artist",
+                type: "GET",
+                beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
+                success: function (data) {
 
-                            console.log(data.artists.items[0].id);
-              
-                    }
-                });
+                    console.log(data);
 
-            })
+                    let bandID = data.artists.items[0].id;
+
+                    $.ajax({
+                        url: "https://api.spotify.com/v1/artists/" + bandID + "/related-artists",
+                        type: "GET",
+                        beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
+                        success: function (data) {
+
+                            console.log("related artists => " + data);
+
+                        }
+                    });
+
+
+                }
+            });
+
+        })
     </script>
 </body>
 
