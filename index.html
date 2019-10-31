@@ -100,6 +100,8 @@
         }
 
         function getSimilarArtists() {
+
+            initArtist = document.getElementById("artist-input").value;
             
             $.ajax({
                         url: "https://api.spotify.com/v1/artists/" + bandID + "/related-artists",
