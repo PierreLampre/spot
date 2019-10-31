@@ -84,6 +84,8 @@
 
             initArtist = $("#search").text().split(' ').join('+');
 
+            console.log(initArtist);
+
             $.ajax({
                 url: "https://api.spotify.com/v1/search?query=" + initArtist + "&offset=0&limit=10&type=artist",
                 type: "GET",
