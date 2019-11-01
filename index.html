@@ -306,7 +306,7 @@
 
 
                         $.ajax({
-                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks" + currentURI,
+                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks" + `${currentURI}`,
                             headers: {
                                 'Authorization': 'Bearer ' + _token,
                             },
