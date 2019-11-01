@@ -105,6 +105,8 @@
 
         let simTrackNames = [];
 
+        let playlistId = [];
+
         //authorization code from similar stackoverflow issue answered by spotify employee.
 
         // Get the hash of the url
@@ -317,6 +319,7 @@
 
                 success: function (response) {
                     console.log(response);
+                    playlistId.push(data.id);
                 },
                 error: function () {
                     console.log("Nope");
