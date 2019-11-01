@@ -286,37 +286,43 @@
         function getUserId() {
 
             $.ajax({
-                        url: "https://api.spotify.com/v1/me",
-                        type: "GET",
-                        beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
-                        success: function (data) {
+                url: "https://api.spotify.com/v1/me",
+                type: "GET",
+                beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
+                success: function (data) {
 
-                            console.log(data);
-                            userId = data.id;
-                        }
-                    });
+                    console.log(data);
+                    userId = data.id;
+                }
+            });
         }
 
         //create a playlist
 
-        function createPlaylist (){
+        function createPlaylist() {
 
             playlistName = document.getElementById("playlist-input").value;
 
+            var jsonData = {
+                "name": playlistName,
+                "public": true
+            };
 
             $.ajax({
                 url: "https://api.spotify.com/v1/users/127375735/playlists",
                 method: "POST",
-                data: {
-                    name: playlistName, 
-                    public: true 
-                },
+                data: jsonData,
+                dataType: "json",
                 headers: {
                     'Authorization': 'Bearer ' + _token,
-                    'Content-Type': 'application/json'
                 },
+                contentType: 'application/json', 
+
                 success: function (response) {
                     console.log(response);
+                },
+                error: function () {
+                    console.log("Nope");
                 }
             });
 
@@ -334,9 +340,9 @@
         $("#playlist-set").on("click", function (event) {
             event.preventDefault();
 
-           console.log("Naaay");
+            console.log("Naaay");
 
-           createPlaylist();
+            createPlaylist();
 
         })
 
