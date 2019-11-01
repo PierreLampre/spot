@@ -184,6 +184,8 @@
 
         $(document).on("click", ".sa-button", function () {
 
+            $(".iframe").empty();
+
             var buttonId = $(this).attr("data-id");
 
             $.ajax({
