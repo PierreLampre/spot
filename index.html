@@ -110,7 +110,7 @@
 
         let playlistId = [];
 
-        let currentURI;
+        // let currentURI;
 
         //authorization code from similar stackoverflow issue answered by spotify employee.
 
@@ -301,15 +301,18 @@
                     $("#atp").on("click", function () {
                         let uri = $(this).attr("data-uri");
                         console.log(uri);
-                        currentURI = uri;
+                        currentURI = uri
                         console.log("boo");
-                        
+
 
                         $.ajax({
-                            url: "https://api.spotify.com/v1/playlists/4y3wSwuntJU0490Z8V2eE0/tracks?uri=spotify%3Atrack%3A6B182GP3TvEfmgUoIMVUSJ",
+                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks",
                             headers: {
                                 'Authorization': 'Bearer ' + _token,
                             },
+                            data: JSON.stringify({
+                                "uris": `${currentURI}`
+                            }),
                             contentType: 'application/json',
                             method: "POST",
 
@@ -317,7 +320,7 @@
                                 console.log("cool bro");
                             },
                             error: function () {
-                                console.log("Nopers MAN");
+                                console.log("Nopers");
                             }
                         });
                     })
@@ -377,27 +380,27 @@
 
         //add songs to playlist
 
-        function addSongToPlaylist() {
+        // function addSongToPlaylist() {
 
-            currentURI = currentURI.split(':').join('%3A');
+        //     currentURI = currentURI.split(':').join('%3A');
 
-            $.ajax({
-                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + currentURI + "/",
-                headers: {
-                    'Authorization': 'Bearer ' + _token,
-                },
-                contentType: 'application/json',
-                method: "POST",
+        //     $.ajax({
+        //         url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + currentURI + "/",
+        //         headers: {
+        //             'Authorization': 'Bearer ' + _token,
+        //         },
+        //         contentType: 'application/json',
+        //         method: "POST",
 
-                success: function (data) {
-                    console.log("cool bro");
-                },
-                error: function () {
-                    console.log("Nopers");
-                }
-            });
+        //         success: function (data) {
+        //             console.log("cool bro");
+        //         },
+        //         error: function () {
+        //             console.log("Nopers");
+        //         }
+        //     });
 
-        }
+        // }
 
         //functionality for similar artist search
 
