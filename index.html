@@ -297,9 +297,10 @@
                     })
 
                     $("#atp").on("click", function () {
-                        uri = $(this).attr("data-uri");
+                        let uri = $(this).attr("data-uri");
                         console.log(uri);
                         console.log("boo");
+                        addSongToPlaylist(uri);
                     })
 
                 }
@@ -357,24 +358,18 @@
 
         //add songs to playlist
 
-        function addSongToPlaylist() {
-
-            track = $("#atp").attr("data-uri");
+        function addSongToPlaylist(uri) {
 
             $.ajax({
-                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + track,
+                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + uri,
                 headers: {
                     'Authorization': 'Bearer ' + _token,
                 },
                 contentType: 'application/json',
                 method: "POST",
-                data: JSON.stringify({
-                    "name": `${playlistName}`,
-                    "public": true
-                }),
 
                 success: function (data) {
-                    console.log(data);
+                    console.log("cool bro");
                 },
                 error: function () {
                     console.log("Nope");
