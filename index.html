@@ -305,7 +305,7 @@
 
 
             $.ajax({
-                url: "https://api.spotify.com/v1/users/" + userId + "/playlists",
+                url: "https://api.spotify.com/v1/users/127375735/playlists",
                 method: "POST",
                 data: {
                     name: JSON.stringify({ name: playlistName, public: true })
@@ -334,8 +334,6 @@
             event.preventDefault();
 
            console.log("Haaaay");
-
-           getUserId();
 
            createPlaylist();
 
