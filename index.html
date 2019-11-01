@@ -311,7 +311,7 @@
                                 'Authorization': 'Bearer ' + _token,
                             },
                             data: JSON.stringify({
-                                "uris": `${currentURI}`
+                                "uris": "'" + `${currentURI}` + "'"
                             }),
                             contentType: 'application/json',
                             method: "POST",
