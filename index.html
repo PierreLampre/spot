@@ -292,6 +292,7 @@
                         success: function (data) {
 
                             console.log(data);
+                            userId = data.id;
                         }
                     });
         }
@@ -304,7 +305,7 @@
 
 
             $.ajax({
-                url: 'https://api.spotify.com/v1/me/playlists',
+                url: "https://api.spotify.com/v1/users/" + userId + "/playlists",
                 method: "POST",
                 data: {
                     name: JSON.stringify({ name: playlistName, public: true })
