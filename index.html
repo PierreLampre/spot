@@ -317,9 +317,10 @@
                     "public": true
                 }),
 
-                success: function (response) {
-                    console.log(response);
-                    playlistId.push(data.id);
+                success: function (data) {
+                    console.log(data);
+                    let plID = data.id;
+                    playlistId.push(plID);
                 },
                 error: function () {
                     console.log("Nope");
