@@ -138,9 +138,9 @@
 
         function namesInDiv() {
 
-            for (let i = 0; i < similars.length; i++) {
+            $("#sim-art").empty();
 
-                $("#sim-art").empty();
+            for (let i = 0; i < similars.length; i++) {
 
                 if (i === 4) {
                     $("#sim-art").append("<span class='sa'>" + similars[i].name + "</span>");
