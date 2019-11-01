@@ -46,14 +46,22 @@
 
 <body>
 
-    <h2>Enter Artist for 5 Similar Artists</h2>
 
     <form id="artist-form">
+        <h2>Enter Artist for 5 Similar Artists</h2>
         <label for="artist-input">Search:</label>
         <input type="text" id="artist-input"><br>
 
         <input id="search" type="submit" value="Search">
     </form>
+
+    <form id="playlist-form">
+            <h2>Enter Artist for 5 Similar Artists</h2>
+            <label for="playlist-input">Search:</label>
+            <input type="text" id="playlist-input"><br>
+    
+            <input id="playist-search" type="submit" value="Search">
+        </form>
 
     <div id="sim-art">
 
@@ -80,7 +88,7 @@
 
         let simTopTracks = [];
 
-
+        let simTrackNames = [];
 
         //authorization code from similar stackoverflow issue answered by spotify employee.
 
@@ -212,12 +220,25 @@
                             simTopTracks.push(prevTrack3);
                             simTopTracks.push(prevTrack4);
 
+                            prevName0 = data.tracks[0].name;
+                            prevName1 = data.tracks[1].name;
+                            prevName2 = data.tracks[2].name;
+                            prevName3 = data.tracks[3].name;
+                            prevName4 = data.tracks[4].name;
+
+                            simTrackNames.push(prevName0);
+                            simTrackNames.push(prevName1);
+                            simTrackNames.push(prevName2);
+                            simTrackNames.push(prevName3);
+                            simTrackNames.push(prevName4);
+
+
                     $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><div>");
                     $("#next").on("click", function(){
                         if (theNumber <= 3) {
                             theNumber++;
                             $("#iframebox").empty();
-                            $("#iframebox").html("<iframe src='" + simTopTracks[theNumber] + "'</iframe>");
+                            $("#iframebox").html("<p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'</iframe>");
                         } else {
 
                         }
@@ -226,7 +247,7 @@
                         if (theNumber >= 1) {
                             theNumber--;
                             $("#iframebox").empty();
-                            $("#iframebox").html("<iframe src='" + simTopTracks[theNumber] + "'</iframe>");
+                            $("#iframebox").html("<p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'</iframe>");
                         } else{
                             
                         }
