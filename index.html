@@ -70,6 +70,8 @@
 
         let similars = [];
 
+        let simTopTracks = [];
+
 
 
         //authorization code from similar stackoverflow issue answered by spotify employee.
@@ -164,26 +166,18 @@
             for (let i = 0; i < similars.length; i++) {
 
                 if (i === 4) {
-                    $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "'width='100' height='100'><button>" + similars[i].name + "</button></span>");
+                    $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "'width='100' height='100'><button>" + similars[i].name + "</button id='sa-button'></span>");
                 } else {
-                    $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "' width='100' height='100'><button>" + similars[i].name + "</button></span>");
+                    $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "' width='100' height='100'><button>" + similars[i].name + "</button id='sa-button'></span>");
                 }
                 
             }
         }
 
         function topTracks() {
-            
-            $.ajax({
-                        url: "https://api.spotify.com/v1/artists/" + saID + "/related-artists",
-                        type: "GET",
-                        beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
-                        success: function (data) {
 
-                            console.log(data);
 
-                        }
-                    });
+         
         }
 
         //functionality for similar artist search
