@@ -53,6 +53,9 @@
     <div id="sim-art">
 
     </div>
+    <div id="preview">
+
+    </div>
 
     <script>
 
@@ -186,7 +189,7 @@
 
                     console.log(data);
                     console.log(data.tracks[0].preview_url);
-
+                    $("#preview").append("<div class='iframe'><iframe src='" + data.tracks[0].preview_url + "'></iframe><div>");
                 }
             });
 
