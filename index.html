@@ -182,11 +182,14 @@
             }
         }
 
+        //Button functionality for top track append
+
         $(document).on("click", ".sa-button", function () {
 
             $(".iframe").empty();
 
             var buttonId = $(this).attr("data-id");
+            let theNumber = 0;
 
             $.ajax({
                 url: "https://api.spotify.com/v1/artists/" + buttonId + "/top-tracks?country=US",
@@ -196,20 +199,41 @@
 
                     console.log(data);
                     console.log(data.tracks[0].preview_url);
-                    $("#preview").append("<div class='iframe'><button>Back</button><iframe src='" + data.tracks[0].preview_url + "'></iframe><button>Next</button><div>");
+
+                            prevTrack0 = data.tracks[0].preview_url;
+                            prevTrack1 = data.tracks[1].preview_url;
+                            prevTrack2 = data.tracks[2].preview_url;
+                            prevTrack3 = data.tracks[3].preview_url;
+                            prevTrack4 = data.tracks[4].preview_url;
+
+                            simTopTracks.push(prevTrack0);
+                            simTopTracks.push(prevTrack1);
+                            simTopTracks.push(prevTrack2);
+                            simTopTracks.push(prevTrack3);
+                            simTopTracks.push(prevTrack4);
+
+                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><iframe src='" + data.tracks[theNumber].preview_url + "'></iframe><button id='next'>Next</button><div>");
+                    $("#next").on("click", function(){
+                        if (theNumber <= 3) {
+                            theNumber++;
+                        } else{
+
+                        }
+                    })
+                    $("#back").on("click", function(){
+                        if (theNumber >= 1) {
+                            theNumber--;
+                        } else{
+                            
+                        }
+                    })
+                    
                 }
             });
 
             console.log(buttonId);
 
         });
-
-
-        function topTracks() {
-
-
-
-        }
 
         //functionality for similar artist search
 
