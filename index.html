@@ -355,7 +355,7 @@
             track = $("#atp").attr("data-uri");
             
             $.ajax({
-                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + ,
+                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=",
                 headers: {
                     'Authorization': 'Bearer ' + _token,
                 },
