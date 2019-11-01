@@ -178,6 +178,16 @@
        
        var buttonId = $(this).attr("data-id");
     
+       $.ajax({
+                        url: "https://api.spotify.com/v1/artists/" + buttonId + "/top-tracks",
+                        type: "GET",
+                        beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
+                        success: function (data) {
+
+                            console.log(data);
+
+                        }
+                    });
 
        console.log(buttonId);
 
