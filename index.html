@@ -110,7 +110,7 @@
 
         let playlistId = [];
 
-        // let currentURI;
+        let currentURI;
 
         //authorization code from similar stackoverflow issue answered by spotify employee.
 
@@ -299,13 +299,14 @@
                     })
 
                     $("#atp").on("click", function () {
-                        let  = $(this).attr("data-uri");
+                        let uri = $(this).attr("data-uri");
                         console.log(uri);
+                        currentURI = uri;
                         console.log("boo");
                         
 
                         $.ajax({
-                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks?uri=" + `${uri}` + "/",
+                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks?uri=" + `${currentURI}` + "/",
                             headers: {
                                 'Authorization': 'Bearer ' + _token,
                             },
