@@ -25,7 +25,8 @@
             display: flex;
         }
 
-        #search, #playlist-search {
+        #search,
+        #playlist-set {
             margin-top: 15px;
         }
 
@@ -46,7 +47,8 @@
             height: 200px;
         }
 
-        #artist-form, #playlist-form {
+        #artist-form,
+        #playlist-form {
             display: inline;
         }
 
@@ -58,23 +60,23 @@
 
 <body>
 
-<div id="formbox">
-    <form id="artist-form">
-        <h2>Enter Artist for 5 Similar Artists</h2>
-        <label for="artist-input">Search:</label>
-        <input type="text" id="artist-input"><br>
+    <div id="formbox">
+        <form id="artist-form">
+            <h2>Enter Artist for 5 Similar Artists</h2>
+            <label for="artist-input">Search:</label>
+            <input type="text" id="artist-input"><br>
 
-        <input id="search" type="submit" value="Search">
-    </form>
+            <input id="search" type="submit" value="Search">
+        </form>
 
-    <form id="playlist-form">
+        <form id="playlist-form">
             <h2>Create a playlist</h2>
             <label for="playlist-input">Go:</label>
             <input type="text" id="playlist-input" placeholder="Playlist Name"><br>
-    
-            <input id="playlist-search" type="submit" value="Go">
+
+            <input id="playlist-set" type="submit" value="Go">
         </form>
-</div>
+    </div>
     <div id="sim-art">
 
     </div>
@@ -220,33 +222,33 @@
                     console.log(data);
                     console.log(data.tracks[0].preview_url);
 
-                            prevTrack0 = data.tracks[0].preview_url;
-                            prevTrack1 = data.tracks[1].preview_url;
-                            prevTrack2 = data.tracks[2].preview_url;
-                            prevTrack3 = data.tracks[3].preview_url;
-                            prevTrack4 = data.tracks[4].preview_url;
+                    prevTrack0 = data.tracks[0].preview_url;
+                    prevTrack1 = data.tracks[1].preview_url;
+                    prevTrack2 = data.tracks[2].preview_url;
+                    prevTrack3 = data.tracks[3].preview_url;
+                    prevTrack4 = data.tracks[4].preview_url;
 
-                            simTopTracks.push(prevTrack0);
-                            simTopTracks.push(prevTrack1);
-                            simTopTracks.push(prevTrack2);
-                            simTopTracks.push(prevTrack3);
-                            simTopTracks.push(prevTrack4);
+                    simTopTracks.push(prevTrack0);
+                    simTopTracks.push(prevTrack1);
+                    simTopTracks.push(prevTrack2);
+                    simTopTracks.push(prevTrack3);
+                    simTopTracks.push(prevTrack4);
 
-                            prevName0 = data.tracks[0].name;
-                            prevName1 = data.tracks[1].name;
-                            prevName2 = data.tracks[2].name;
-                            prevName3 = data.tracks[3].name;
-                            prevName4 = data.tracks[4].name;
+                    prevName0 = data.tracks[0].name;
+                    prevName1 = data.tracks[1].name;
+                    prevName2 = data.tracks[2].name;
+                    prevName3 = data.tracks[3].name;
+                    prevName4 = data.tracks[4].name;
 
-                            simTrackNames.push(prevName0);
-                            simTrackNames.push(prevName1);
-                            simTrackNames.push(prevName2);
-                            simTrackNames.push(prevName3);
-                            simTrackNames.push(prevName4);
+                    simTrackNames.push(prevName0);
+                    simTrackNames.push(prevName1);
+                    simTrackNames.push(prevName2);
+                    simTrackNames.push(prevName3);
+                    simTrackNames.push(prevName4);
 
 
                     $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><div>");
-                    $("#next").on("click", function(){
+                    $("#next").on("click", function () {
                         if (theNumber <= 3) {
                             theNumber++;
                             $("#iframebox").empty();
@@ -255,22 +257,46 @@
 
                         }
                     })
-                    $("#back").on("click", function(){
+                    $("#back").on("click", function () {
                         if (theNumber >= 1) {
                             theNumber--;
                             $("#iframebox").empty();
                             $("#iframebox").html("<p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'</iframe>");
-                        } else{
-                            
+                        } else {
+
                         }
                     })
-                    
+
                 }
             });
 
             console.log(buttonId);
 
         });
+
+        //create a playlist
+
+        function createPlaylist (){
+
+            playlistName = document.getElementById("playist-input").value;
+
+
+            $.ajax({
+                url: 'https://api.spotify.com/v1/users/me/playlists',
+                method: "POST",
+                data: {
+                    name: JSON.stringify({ name: playlistName, public: true })
+                },
+                headers: {
+                    'Authorization': 'Bearer ' + access_token,
+                    'Content-Type': 'application/json'
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+
+        }
 
         //functionality for similar artist search
 
@@ -280,6 +306,8 @@
             getSimilarArtists();
 
         })
+
+
     </script>
 </body>
 
