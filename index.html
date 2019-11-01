@@ -212,17 +212,21 @@
                             simTopTracks.push(prevTrack3);
                             simTopTracks.push(prevTrack4);
 
-                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><iframe src='" + simTopTracks[theNumber] + "'></iframe><button id='next'>Next</button><div>");
+                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><div>");
                     $("#next").on("click", function(){
                         if (theNumber <= 3) {
                             theNumber++;
-                        } else{
+                            $("#iframebox").empty();
+                            $("#iframebox").html("<span id='iframebox'><iframe src='" + simTopTracks[theNumber] + "'</iframe></span>");
+                        } else {
 
                         }
                     })
                     $("#back").on("click", function(){
                         if (theNumber >= 1) {
                             theNumber--;
+                            $("#iframebox").empty();
+                            $("#iframebox").html("<span id='iframebox'><iframe src='" + simTopTracks[theNumber] + "'</iframe></span>");
                         } else{
                             
                         }
