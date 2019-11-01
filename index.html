@@ -303,20 +303,17 @@
 
             playlistName = document.getElementById("playlist-input").value;
 
-            var jsonData = {
-                "name": playlistName,
-                "public": true
-            };
-
             $.ajax({
                 url: "https://api.spotify.com/v1/users/127375735/playlists",
-                method: "POST",
-                data: jsonData,
-                dataType: "json",
                 headers: {
                     'Authorization': 'Bearer ' + _token,
                 },
                 contentType: 'application/json', 
+                method: "POST",
+                data: JSON.stringify({
+                    "name": `${playlistName}`,
+                    "public": true
+                }),
 
                 success: function (response) {
                     console.log(response);
