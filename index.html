@@ -95,6 +95,7 @@
         let newBand3;
         let newBand4;
         let initArtist = document.getElementById("artist-input").value;
+        let userId;
 
         //Arrays
 
@@ -280,6 +281,21 @@
 
         });
 
+        //get user id
+
+        function getUserId() {
+
+            $.ajax({
+                        url: "https://api.spotify.com/v1/me",
+                        type: "GET",
+                        beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + _token); },
+                        success: function (data) {
+
+                            console.log(data);
+                        }
+                    });
+        }
+
         //create a playlist
 
         function createPlaylist (){
@@ -315,6 +331,8 @@
 
         $("#playist-set").on("click", function (event) {
             event.preventDefault();
+
+           //getUserId();
 
            createPlaylist();
 
