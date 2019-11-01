@@ -95,7 +95,8 @@
             console.log(initArtist);
 
             similars = [];
-            
+
+
             initArtist = document.getElementById("artist-input").value;
 
             $.ajax({
@@ -138,6 +139,9 @@
         function namesInDiv() {
 
             for (let i = 0; i < similars.length; i++) {
+
+                $("#sim-art").clear();
+
                 if (i === 4) {
                     $("#sim-art").append("<span class='sa'>" + similars[i].name + "</span>");
                 } else {
