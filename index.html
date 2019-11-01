@@ -110,6 +110,8 @@
 
         let playlistId = [];
 
+        let currentURI;
+
         //authorization code from similar stackoverflow issue answered by spotify employee.
 
         // Get the hash of the url
@@ -298,6 +300,7 @@
 
                     $("#atp").on("click", function () {
                         let uri = $(this).attr("data-uri");
+                        currentURI = uri;
                         console.log(uri);
                         console.log("boo");
                         addSongToPlaylist(uri);
@@ -358,10 +361,11 @@
 
         //add songs to playlist
 
-        function addSongToPlaylist(uri) {
+        function addSongToPlaylist() {
+
 
             $.ajax({
-                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + uri,
+                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + currentURI,
                 headers: {
                     'Authorization': 'Bearer ' + _token,
                 },
