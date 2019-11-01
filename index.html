@@ -21,6 +21,10 @@
             margin: 20px;
         }
 
+        #formbox {
+            display: flex;
+        }
+
         #search, #playlist-search {
             margin-top: 15px;
         }
@@ -54,7 +58,7 @@
 
 <body>
 
-
+<div id="formbox">
     <form id="artist-form">
         <h2>Enter Artist for 5 Similar Artists</h2>
         <label for="artist-input">Search:</label>
@@ -70,7 +74,7 @@
     
             <input id="playist-search" type="submit" value="Go">
         </form>
-
+</div>
     <div id="sim-art">
 
     </div>
