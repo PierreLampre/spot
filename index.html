@@ -273,12 +273,13 @@
 
 
 
-                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><p><button id='atp' data-uri=>Add To Playlist</button></p><div>");
+                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><p><button id='atp' data-uri='" + simTrackURis[theNumber] + "'>Add To Playlist</button></p><div>");
                     $("#next").on("click", function () {
                         if (theNumber <= 3) {
                             theNumber++;
                             $("#iframebox").empty();
                             $("#iframebox").html("<p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'</iframe>");
+                            $("#atp").attr("data-uri", simTrackURIs[theNumber]);
                         } else {
 
                         }
@@ -288,6 +289,7 @@
                             theNumber--;
                             $("#iframebox").empty();
                             $("#iframebox").html("<p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'</iframe>");
+                            $("#atp").attr("data-uri", simTrackURIs[theNumber]);
                         } else {
 
                         }
@@ -350,9 +352,10 @@
 
         function addSongToPlaylist() {
 
+            track = $("#atp").attr("data-uri");
             
             $.ajax({
-                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks",
+                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + ,
                 headers: {
                     'Authorization': 'Bearer ' + _token,
                 },
@@ -365,8 +368,6 @@
 
                 success: function (data) {
                     console.log(data);
-                    let plID = data.id;
-                    playlistId.push(plID);
                 },
                 error: function () {
                     console.log("Nope");
@@ -391,6 +392,10 @@
 
             createPlaylist();
 
+        })
+
+        $("atp").on("click", function () {
+            console.log($("#atp").attr("data-uri"));
         })
 
 
