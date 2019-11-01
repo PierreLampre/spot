@@ -151,9 +151,9 @@
             for (let i = 0; i < similars.length; i++) {
 
                 if (i === 4) {
-                    $("#sim-art").append("<span class='sa'><img src=''" + similars.images[0] + "'><p>" + similars[i].name + "</p></span>");
+                    $("#sim-art").append("<span class='sa'><img src=''" + similars[i].images[0] + "'><p>" + similars[i].name + "</p></span>");
                 } else {
-                    $("#sim-art").append("<span class='sa'><img src=''" + similars.images[0] + "'><p>" + similars[i].name + " - </span>");
+                    $("#sim-art").append("<span class='sa'><img src=''" + similars[i].images[0] + "'><p>" + similars[i].name + " - </span>");
                 }
                 
             }
