@@ -206,9 +206,13 @@
 
         //Button functionality for top track append
 
-        $(".sa-button").on("click", function () {
+        $(document).on("click", ".sa-button", function () {
 
             $("#preview").empty();
+
+            simTopTracks = [];
+
+            simTrackNames = [];
 
             var buttonId = $(this).attr("data-id");
             let theNumber = 0;
