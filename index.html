@@ -27,6 +27,12 @@
         #sim-art {
             display: flex;
         }
+
+        .sa {
+            margin: 10px;
+        }
+
+
     </style>
 </head>
 
@@ -157,7 +163,7 @@
                 if (i === 4) {
                     $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "'width='100' height='100'><p>" + similars[i].name + "</p></span>");
                 } else {
-                    $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "' width='100' height='100'><p>" + similars[i].name + " - </span>");
+                    $("#sim-art").append("<div class='sa'><img src='" + similars[i].images[0].url + "' width='100' height='100'><p>" + similars[i].name + "</span>");
                 }
                 
             }
