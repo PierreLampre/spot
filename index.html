@@ -41,6 +41,10 @@
             display: flex;
             height: 200px;
         }
+
+        #artist-form {
+            display: inline;
+        }
     </style>
 </head>
 
@@ -56,11 +60,11 @@
     </form>
 
     <form id="playlist-form">
-            <h2>Enter Artist for 5 Similar Artists</h2>
-            <label for="playlist-input">Search:</label>
-            <input type="text" id="playlist-input"><br>
+            <h2>Create a playlist</h2>
+            <label for="playlist-input">Go:</label>
+            <input type="text" id="playlist-input" placeholder="Playlist Name"><br>
     
-            <input id="playist-search" type="submit" value="Search">
+            <input id="playist-search" type="submit" value="Go">
         </form>
 
     <div id="sim-art">
@@ -233,7 +237,7 @@
                             simTrackNames.push(prevName4);
 
 
-                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><div>");
+                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><div>");
                     $("#next").on("click", function(){
                         if (theNumber <= 3) {
                             theNumber++;
