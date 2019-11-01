@@ -105,6 +105,8 @@
 
         let simTrackNames = [];
 
+        let simTrackURIS = [];
+
         let playlistId = [];
 
         //authorization code from similar stackoverflow issue answered by spotify employee.
@@ -217,6 +219,8 @@
 
             simTrackNames = [];
 
+            simTrackURIs = [];
+
             var buttonId = $(this).attr("data-id");
             let theNumber = 0;
 
@@ -255,8 +259,21 @@
                     simTrackNames.push(prevName3);
                     simTrackNames.push(prevName4);
 
+                    trackURI0 = data.tracks[0].uri;
+                    trackURI1 = data.tracks[1].uri;
+                    trackURI2 = data.tracks[2].uri;
+                    trackURI3 = data.tracks[3].uri;
+                    trackURI4 = data.tracks[4].uri;
 
-                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><p><button id='atp'>Add To Playlist</button></p><div>");
+                    simTrackNames.push(trackURI0);
+                    simTrackNames.push(trackURI1);
+                    simTrackNames.push(trackURI2);
+                    simTrackNames.push(trackURI3);
+                    simTrackNames.push(trackURI4);
+
+
+
+                    $("#preview").append("<div class='iframe'><button id='back'>Back</button><span id='iframebox'><p> " + simTrackNames[theNumber] + "</p><iframe src='" + simTopTracks[theNumber] + "'></iframe></span><button id='next'>Next</button><p><button id='atp' data-uri=>Add To Playlist</button></p><div>");
                     $("#next").on("click", function () {
                         if (theNumber <= 3) {
                             theNumber++;
@@ -307,6 +324,35 @@
 
             $.ajax({
                 url: "https://api.spotify.com/v1/me/playlists",
+                headers: {
+                    'Authorization': 'Bearer ' + _token,
+                },
+                contentType: 'application/json', 
+                method: "POST",
+                data: JSON.stringify({
+                    "name": `${playlistName}`,
+                    "public": true
+                }),
+
+                success: function (data) {
+                    console.log(data);
+                    let plID = data.id;
+                    playlistId.push(plID);
+                },
+                error: function () {
+                    console.log("Nope");
+                }
+            });
+
+        }
+
+        //add songs to playlist
+
+        function addSongToPlaylist() {
+
+            
+            $.ajax({
+                url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks",
                 headers: {
                     'Authorization': 'Bearer ' + _token,
                 },
