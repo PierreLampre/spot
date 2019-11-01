@@ -114,23 +114,31 @@
                             newBand3 = data.artists[3];
                             newBand4 = data.artists[4];
 
-                            console.log(newBand0.name);
-                            console.log(newBand1.name);
-                            console.log(newBand2.name);
-                            console.log(newBand3.name);
-                            console.log(newBand4.name);
-
-                            $("#sim-art").text(newBand0 + " - " + newBand1 + " - " + newBand2 + " - " + newBand3 + " - " + newBand4); 
-
                             similars.push(newBand0);
                             similars.push(newBand1);
                             similars.push(newBand2);
                             similars.push(newBand3);
                             similars.push(newBand4);
+
+                            namesInDiv();
                         }
                     });
                 }
             });
+        }
+
+        function namesInDiv() {
+
+            for (let i = 0; i < similars.length; i++) {
+                if (i === 4) {
+                    $("#sim-art").append("<span class='sa'>" + similars[i].name + "</span>");
+                } else {
+                    $("#sim-art").append("<span class='sa'>" + similars[i].name + " - </span>");
+                }
+                
+            }
+
+            $("#sim-art").text()
         }
 
         function topTracks() {
