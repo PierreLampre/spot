@@ -306,7 +306,7 @@
                         
 
                         $.ajax({
-                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks?uri=" + `${currentURI}` + "/",
+                            url: "https://api.spotify.com/v1/playlists/" + `${playlistId[0]}` + "/tracks?uri=" + `${currentURI}`,
                             headers: {
                                 'Authorization': 'Bearer ' + _token,
                             },
@@ -317,7 +317,7 @@
                                 console.log("cool bro");
                             },
                             error: function () {
-                                console.log("Nopers");
+                                console.log("Nopers MAN");
                             }
                         });
                     })
