@@ -308,7 +308,8 @@
                 url: "https://api.spotify.com/v1/users/127375735/playlists",
                 method: "POST",
                 data: {
-                    name: { name: playlistName, public: true },
+                    name: playlistName, 
+                    public: true 
                 },
                 headers: {
                     'Authorization': 'Bearer ' + _token,
