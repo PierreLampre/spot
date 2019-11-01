@@ -363,7 +363,7 @@
 
         function addSongToPlaylist() {
 
-            currentURI = currentURIsplit(':').join('%3A');
+            currentURI = currentURI.split(':').join('%3A');
 
             $.ajax({
                 url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks?uri=" + currentURI + "/",
