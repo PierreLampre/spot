@@ -313,19 +313,21 @@
 
                             method: "POST",
 
-                            success: function () {
+                            success: function (data) {
                                 console.log("cool bro");
                             },
-                            error: function () {
-                                console.log("STILL NOT WORKING");
+                            error: function (response, status, error) {
+                                console.log("This is the error:", error);
+                                console.log("full response object is:", response);
+                                console.log("somethin about status?", status);
                             }
-                        });
-                    })
+                    });
+                })
 
-                }
+        }
             });
 
-            console.log(buttonId);
+        console.log(buttonId);
 
         });
 
