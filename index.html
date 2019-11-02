@@ -304,14 +304,17 @@
                         currentURI = uri
                         console.log("boo");
 
+                        const url = "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks" + currentURI
+
+                        console.log(url);
 
                         $.ajax({
-                            url: "https://api.spotify.com/v1/playlists/" + playlistId[0] + "/tracks" + currentURI,
+                            url: url,
                             headers: {
                                 'Authorization': 'Bearer ' + _token,
                             },
 
-                            method: "GET",
+                            method: "POST",
 
                             success: function (data) {
                                 console.log("cool bro");
